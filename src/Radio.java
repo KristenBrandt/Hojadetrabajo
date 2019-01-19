@@ -9,10 +9,10 @@ public class Radio implements iRadio {
 
     public Radio() {
         this.encendido = false;
-        this.estacion = 100.0;
+        this.estacion = 530.0;
         this.isAM = true;
-        this.estacionesFavAM = new double[6];
-        this.estacionesFavFM = new double[6];
+        this.estacionesFavAM = new double[12];
+        this.estacionesFavFM = new double[12];
     }
 
     @Override
@@ -47,8 +47,10 @@ public class Radio implements iRadio {
     @Override
     public double getFavorito(int posicion) {
         if (this.isAM) {
+            estacion = this.estacionesFavAM[posicion];
             return this.estacionesFavAM[posicion];
         } else {
+            estacion = this.estacionesFavFM[posicion];
             return this.estacionesFavFM[posicion];
         }
     }
@@ -72,12 +74,10 @@ public class Radio implements iRadio {
     }
 
     @Override
-    public void encendidoRadio() {
-        if (encendido) {
-            this.encendido = false;
-        } else {
-            this.encendido = true;
-        }
+    public boolean encendidoRadio() {
+        encendido =! encendido;
+        return encendido;
+
     }
 
     @Override

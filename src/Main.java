@@ -20,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         iRadio myRadio = new Radio();
         boolean continuar = true;
+        boolean on = false;
         String am = "AM";
 
         do {
@@ -31,6 +32,7 @@ public class Main {
             switch (opcion) {
                 case 1:
                     myRadio.encendidoRadio();
+                    on = true;
 
                     do {
                         System.out.println(ONmenu);
@@ -41,14 +43,14 @@ public class Main {
                             case 1:
                                 myRadio.encendidoRadio();
                                 System.out.println("Apagando el radio...");
-                                continuar = false;
+                                on = false;
                                 break;
                             case 2:
                                 if (myRadio.cambiarAmFm()) {
                                     am = "AM";
                                 }else{
                                     am = "FM";
-                                };
+                                }
                                 System.out.println(" Se ha cambiado de sintonia, ahora se encuentra en " + am);
                                 break;
 
@@ -67,13 +69,14 @@ public class Main {
                                 myRadio.getFavorito(change1);
 
 
-                                // System.out.print( "La estacion que seleciono es la" +myRadio.getFavorito(station)));
+                                 System.out.print( "La estacion que seleciono es la " + String.valueOf(myRadio.getFavorito(change1)));
                                 break;
                             case 6:
                                 // TODO: 2019-01-17
                                 System.out.println(" En que numero quiere guardar la estacion (1-12)?");
                                 String station0 = input.nextLine();
                                 String station1 = input.nextLine();
+
                                 int change = Integer.valueOf(station1);
                                 myRadio.setFavorito((change));
                                 System.out.println("Se guardo exitosamente la estacion selecionada");
@@ -83,13 +86,14 @@ public class Main {
 
 
                         }
-                    } while(myRadio.getIsOn());
+                    } while(on);
 
                     break;
 
                 //Salir.
                 case 2:
-                    System.out.println("Apagando el radio...");
+                    System.out.println("Apagando el programa...");
+                    on = false;
                     continuar = false;
                     break;
             }
